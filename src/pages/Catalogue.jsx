@@ -1,4 +1,5 @@
 import { useState , useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -13,6 +14,7 @@ function Catalogue(){
     const [maxPrice,setMaxPrice] = useState(0);
     const [quantities,setQuantity] = useState({});
     const [destination,setDestination] = useState('');
+    const navigate = useNavigate();
     useEffect(() => {
         fetchProducts()
         }, [page]);
@@ -29,6 +31,11 @@ function Catalogue(){
        });
         setProducts(response.data.content);
         setTotalPages(response.data.totalPages);
+    };
+
+    const ordersHistory = async () => {
+        const token = localStorage.getItem('token');
+        navigate('/Orders');
     };
 
 
@@ -106,6 +113,7 @@ function Catalogue(){
             <button
                 onClick={fetchProducts}>Fetch
             </button>
+            <button onClick={ordersHistory}>Orders history </button>
             <button
                 onClick ={() => setPage(page - 1)}
                 disabled={page === 0}>
