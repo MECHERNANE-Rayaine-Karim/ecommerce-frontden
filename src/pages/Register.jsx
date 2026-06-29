@@ -16,6 +16,11 @@ function Register() {
                contact,
                role
         });
+        const login = await axios.post('http://localhost:8080/api/auth/login',{
+                       username,
+                       password
+        });
+        localStorage.setItem('token',login.data.token);
         navigate('/catalogue');
     };
 

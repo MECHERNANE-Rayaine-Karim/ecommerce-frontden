@@ -33,8 +33,7 @@ function Catalogue(){
         setTotalPages(response.data.totalPages);
     };
 
-    const ordersHistory = async () => {
-        const token = localStorage.getItem('token');
+    const ordersHistory = () => {
         navigate('/Orders');
     };
 
@@ -55,6 +54,7 @@ function Catalogue(){
            {
                headers: {Authorization: `Bearer ${token}`}
         });
+        navigate('/Orders');
 
     };
 
@@ -100,6 +100,12 @@ function Catalogue(){
                  placeholder="maximum price"
                  value={maxPrice}
                  onChange={(e) => setMaxPrice(e.target.value)}
+            />
+            <input
+                 type ="Text"
+                 placeholder="destination"
+                 value={destination}
+                 onChange={(e) => setDestination(e.target.value)}
             />
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
                   <option value="">Select status</option>

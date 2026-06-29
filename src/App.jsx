@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Catalogue from './pages/Catalogue';
 import Orders from './pages/Orders';
-
+import OrdersDetails from './pages/OrderDetails';
 
 function App() {
 return (
@@ -14,7 +14,7 @@ return (
 <Route path="/register" element={<Register/>} />
 <Route path="/catalogue" element={<Catalogue/>} />
 <Route path="/orders" element={<Orders/>} />
-<Route path="/orders/:orderId" element={<div>Order Details</div>} />
+<Route path="/orders/:orderId" element={<OrdersDetails/>} />
 <Route path="/admin" element={<div>Admin Panel</div>} />
 </Routes>
 </BrowserRouter>

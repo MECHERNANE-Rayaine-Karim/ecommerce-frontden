@@ -1,4 +1,5 @@
 import { useState , useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -8,12 +9,10 @@ function Orders(){
 
 
     const [orders,setOrders] = useState([]);
-    const [orderedItems,setOrderedItems] = useState([]);
     const [page , setPage] = useState(0);
     const [totalPages,setTotalPages] = useState(0);
     const [status,setStatus] = useState('');
-    const [destination,setDestination] = useState('');
-
+    const navigate = useNavigate();
 
 
 
@@ -22,6 +21,9 @@ function Orders(){
             getOrders()
             }, [page]);
 
+    const orderDetails = (orderId) => {
+        navigate(`/orders/${orderId}`);
+    };
 
     const getOrders = async () => {
            const token = localStorage.getItem('token');
@@ -45,7 +47,7 @@ function Orders(){
 
     return(
         <div>
-            <h2>    Orders history    </h2>
+            <h3>    Orders history    </h3>
             {orders.map((order) => (
                 <div key={order.orderId}>
                     <h2>Order: </h2>
@@ -53,8 +55,7 @@ function Orders(){
                     <p>Estimated arrival: {order.estimatedArrival}</p>
                     <p>Destination: {order.destination}</p>
                     <p>Status: {order.status}</p>
-                    <p></p>
-                    <p></p>
+                    <button onClick={() => orderDetails(order.orderId)}> details </button>
                 </div>
             ))}
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
