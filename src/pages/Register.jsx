@@ -20,7 +20,10 @@ function Register() {
                        username,
                        password
         });
-        localStorage.setItem('token',login.data.token);
+        const token = login.data.token;
+        localStorage.setItem('token',token);
+        const playload = JSON.parse(atob(token.split('.')[1]));
+        localStorage.setItem('role',playload.role);
         navigate('/catalogue');
     };
 

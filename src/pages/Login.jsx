@@ -12,7 +12,10 @@ function Login() {
                username,
                password
         });
-        localStorage.setItem('token',response.data.token);
+        const token = response.data.token;
+        localStorage.setItem('token',token);
+        const playload = JSON.parse(atob(token.split('.')[1]));
+        localStorage.setItem('role',playload.role);
         navigate('/catalogue');
     };
 
