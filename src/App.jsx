@@ -4,7 +4,8 @@ import Register from './pages/Register';
 import Catalogue from './pages/Catalogue';
 import Orders from './pages/Orders';
 import OrdersDetails from './pages/OrderDetails';
-
+import AddProduct from './pages/AddProduct';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
 return (
 <BrowserRouter>
@@ -15,7 +16,9 @@ return (
 <Route path="/catalogue" element={<Catalogue/>} />
 <Route path="/orders" element={<Orders/>} />
 <Route path="/orders/:orderId" element={<OrdersDetails/>} />
-<Route path="/admin" element={<div>Admin Panel</div>} />
+<Route path="/addProduct" element={<ProtectedRoute requiredRole= 'ADMIN'>
+                                        <AddProduct />
+                                    </ProtectedRoute>} />
 </Routes>
 </BrowserRouter>
 );
